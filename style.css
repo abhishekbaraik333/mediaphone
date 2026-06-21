@@ -1,0 +1,11 @@
+/* ==========================================================================
+   MediaMarkt Header Clone - Custom Stylesheet
+   (Most structural layout and utility styling are handled via Tailwind CSS v4)
+   ========================================================================== */
+
+/* Custom global styles or overrides that are not easily done via Tailwind */
+:root {
+  /* Keep custom variables for quick reference in JS or external modules if needed */
+  --color-mm-red: #df0000;
+  --color-black: #000000;
+}
