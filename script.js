@@ -4,6 +4,67 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
+  // --- Shuffling Product Cards (Persisted per session) ---
+  const productsGrid = document.getElementById('products-grid');
+  if (productsGrid) {
+    const cards = Array.from(productsGrid.children);
+    
+    // Helper to get product ID from card
+    const getCardId = (card) => {
+      const btn = card.querySelector('.btn-add-to-cart');
+      return btn ? btn.getAttribute('data-product-id') : null;
+    };
+
+    let savedOrder = null;
+    try {
+      const sessionData = sessionStorage.getItem('products-order');
+      if (sessionData) {
+        savedOrder = JSON.parse(sessionData);
+      }
+    } catch (e) {
+      console.error('Error reading session storage:', e);
+    }
+
+    if (savedOrder && Array.isArray(savedOrder)) {
+      // Re-order cards based on the saved order
+      const cardMap = new Map();
+      cards.forEach(card => {
+        const id = getCardId(card);
+        if (id) cardMap.set(id, card);
+      });
+
+      savedOrder.forEach(id => {
+        const card = cardMap.get(id);
+        if (card) productsGrid.appendChild(card);
+      });
+
+      // Fallback: Append any cards that weren't in the saved order list
+      cards.forEach(card => {
+        const id = getCardId(card);
+        if (id && !savedOrder.includes(id)) {
+          productsGrid.appendChild(card);
+        }
+      });
+    } else {
+      // First time page loads: Fisher-Yates Shuffle
+      for (let i = cards.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [cards[i], cards[j]] = [cards[j], cards[i]];
+      }
+
+      // Re-append cards to grid in random order
+      cards.forEach(card => productsGrid.appendChild(card));
+
+      // Save order to sessionStorage
+      const orderedIds = cards.map(card => getCardId(card)).filter(Boolean);
+      try {
+        sessionStorage.setItem('products-order', JSON.stringify(orderedIds));
+      } catch (e) {
+        console.error('Error saving session storage:', e);
+      }
+    }
+  }
+
   // --- Element Selectors ---
   const storeSelector = document.getElementById('store-selector');
   const storeInput = document.querySelector('.mm-header__store-input');

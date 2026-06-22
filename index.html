@@ -739,7 +739,7 @@
       </div>
 
       <!-- Products Grid (Side-by-side desktop, stacked mobile) -->
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div id="products-grid" class="grid grid-cols-1 lg:grid-cols-2 gap-6">
 
         <!-- Card 1: Samsung Galaxy S26 -->
         <div
@@ -2329,6 +2329,774 @@
               class="btn-add-to-cart bg-[#030303] text-white font-bold text-[13px] md:text-sm px-4 md:px-5 h-10 md:h-11 rounded-md hover:bg-[#2c2c2c] active:scale-95 transition-all flex items-center justify-center gap-2 w-full md:w-auto cursor-pointer"
               data-product-id="apple-iphone-17e" data-product-name="Apple iPhone 17e" data-product-price="354.50"
               data-product-image="public/iphone_17e.jpeg">
+              <svg class="w-4.5 h-4.5 md:w-5 md:h-5" fill="none" stroke="currentColor" stroke-width="2"
+                viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z">
+                </path>
+              </svg>
+              <span>Añadir al carrito</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Card 9: Xiaomi 17T -->
+        <div
+          class="bg-white border border-gray-200 rounded-xl p-4 md:p-5 flex flex-col justify-between hover:shadow-[0_8px_24px_rgba(0,0,0,0.05)] transition-shadow duration-200">
+          <div>
+            <!-- Tags & Energy Badge -->
+            <div class="flex justify-between items-start gap-4 mb-3.5">
+              <div class="flex flex-wrap gap-2 items-center">
+                <span
+                  class="border border-mm-red text-mm-red font-bold text-[10px] md:text-[11px] px-2.5 py-0.5 rounded-full bg-white select-none">Descuento miMediaMarkt</span>
+                <span
+                  class="border border-mm-red text-mm-red font-bold text-[10px] md:text-[11px] px-2.5 py-0.5 rounded-full bg-white select-none">Novedad</span>
+              </div>
+              <!-- Energy Badge & Ficha técnica -->
+              <div class="flex items-center gap-2 shrink-0">
+                <a href="#" class="text-xs text-gray-500 underline hover:text-mm-red transition-colors hidden md:block font-medium">Ficha técnica</a>
+                <img src="public/a-a-g-icon.svg" alt="Clase A" class="h-6 w-auto shrink-0 hidden md:block" />
+              </div>
+            </div>
+
+            <!-- Desktop Title (Hidden on mobile) -->
+            <h3
+              class="hidden md:block text-[15px] font-bold text-[#030303] leading-snug hover:text-mm-red transition-colors cursor-pointer mb-4">
+              Móvil - Xiaomi 17T, Negro, 256GB, 12GB RAM, 6.59" POLED, MediaTek Dimensity 8500 - Ultra de 4 nm, 6500mAh
+            </h3>
+
+            <!-- Card Grid -->
+            <div class="grid grid-cols-[110px_1fr] md:grid-cols-[140px_1fr_auto] gap-x-4 gap-y-3 items-start mt-2">
+
+              <!-- Col 1: Phone Image -->
+              <div class="flex flex-col items-center">
+                <div class="w-[110px] h-[110px] md:w-[140px] md:h-[140px] flex items-center justify-center">
+                  <img src="public/xiaomi_17t.jpeg" alt="Xiaomi 17T"
+                    class="max-h-full max-w-full object-contain" />
+                </div>
+              </div>
+
+              <!-- Col 2 (Desktop): Specs (Hidden on mobile) -->
+              <div class="hidden md:flex flex-col gap-3 text-[13px] text-[#030303] border-r border-gray-100 pr-4">
+                <div>
+                  <span class="block text-gray-500 text-[11px] font-normal leading-tight">Tamaño Pantalla
+                    (cm/pulg.)</span>
+                  <span class="block font-bold mt-0.5">16.74 cm / 6.59 "</span>
+                </div>
+                <div>
+                  <span class="block text-gray-500 text-[11px] font-normal leading-tight">Capacidad memoria</span>
+                  <span class="block font-bold mt-0.5">256 GB</span>
+                </div>
+                <div>
+                  <span class="block text-gray-500 text-[11px] font-normal leading-tight">Sistema Operativo</span>
+                  <span class="block font-bold mt-0.5">Android</span>
+                </div>
+                <div>
+                  <span class="block text-gray-500 text-[11px] font-normal leading-tight">Procesador</span>
+                  <span class="block font-bold mt-0.5">MediaTek Dimensity 8500 - Ultra de 4 nm</span>
+                </div>
+              </div>
+
+              <!-- Col 3 / Mobile Right Column -->
+              <div class="flex flex-col items-start text-left w-full">
+
+                <!-- Mobile Title (Hidden on desktop) -->
+                <h3
+                  class="block md:hidden text-[13px] font-bold text-[#030303] leading-snug hover:text-mm-red transition-colors cursor-pointer mb-1.5">
+                  Móvil - Xiaomi 17T, Negro, 256GB, 12GB RAM, 6.59" POLED, MediaTek Dimensity 8500 - Ultra de 4 nm, 6500mAh
+                </h3>
+
+                <!-- Rating Stars (Mobile Only) -->
+                <div class="flex md:hidden items-center gap-1 mb-2.5">
+                  <div class="flex text-[#df0000]">
+                    <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
+                      <path
+                        d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                    </svg>
+                    <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
+                      <path
+                        d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                    </svg>
+                    <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
+                      <path
+                        d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                    </svg>
+                    <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
+                      <path
+                        d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                    </svg>
+                    <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
+                      <path
+                        d="M22 9.24l-7.19-.62L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27 18.18 21l-1.63-7.03L22 9.24zM12 15.4V6.1l1.71 4.04 4.38.38-3.32 2.88 1 4.28L12 15.4z" />
+                    </svg>
+                  </div>
+                  <span class="text-xs text-gray-500 font-semibold ml-0.5">7</span>
+                </div>
+
+                <!-- Energy Rating Badge (Mobile Only) -->
+                <img src="public/a-a-g-icon.svg" alt="Clase A"
+                  class="h-4.5 w-auto shrink-0 block md:hidden mb-2" />
+
+                <!-- Price Details -->
+                <div class="flex items-center gap-2 self-start">
+                  <span
+                    class="bg-mm-red text-white font-bold text-[10px] md:text-xs px-1 md:px-1.5 py-0.5 rounded-sm select-none">-50%</span>
+                  <span class="text-gray-400 text-xs md:text-sm line-through font-semibold">749,– €</span>
+                </div>
+
+                <div
+                  class="text-2xl md:text-[32px] font-extrabold text-[#df0000] mt-0.5 md:mt-1 leading-none self-start">
+                  374,50 €
+                </div>
+
+                <span
+                  class="text-[10px] md:text-[11px] text-gray-500 underline mt-1 cursor-pointer self-start hover:text-mm-red transition-colors">IVA
+                  incl. Con envío gratis</span>
+                <span
+                  class="text-[10px] md:text-[11px] text-gray-700 underline mt-1 font-medium cursor-pointer self-start hover:text-mm-red transition-colors">Simula
+                  tu financiación*</span>
+
+                <!-- Promo Box: -200,- € extra con miMediaMarkt -->
+                <div
+                  class="inline-flex items-center justify-between w-full bg-[#fff2f2] rounded-sm text-[#df0000] px-2.5 py-1 text-[11px] md:text-[12px] font-medium mt-2.5 gap-1.5 self-start select-none border border-[#ffe0e0]">
+                  <span><strong class="font-extrabold">-200,– € extra</strong> con miMediaMarkt</span>
+                  <img src="public/logo-mobile.svg" alt="miMediaMarkt" class="h-4 w-auto shrink-0 filter brightness-0 sepia-0 hue-rotate-0 saturate-200 text-[#df0000]" />
+                </div>
+
+                <!-- Inventory / Delivery Block -->
+                <div class="flex flex-col gap-2 mt-4 text-left items-start">
+                  <div class="flex gap-2 items-start text-[13px]">
+                    <span class="w-2.5 h-2.5 bg-green-600 rounded-full mt-1 shrink-0"></span>
+                    <div class="text-left">
+                      <span class="font-bold text-[#030303]">Disponible online</span>
+                      <span class="block text-gray-500 text-[11px] mt-0.5">Compra antes de las 18:30 hrs., y recíbelo mañana</span>
+                    </div>
+                  </div>
+                  <div class="flex gap-2 items-start text-[13px]">
+                    <span class="w-2.5 h-2.5 bg-amber-500 rounded-full mt-1 shrink-0"></span>
+                    <div class="text-left">
+                      <span class="font-bold text-[#030303]">Recogida en tienda</span>
+                      <span class="block text-gray-500 text-[11px] mt-0.5">Consultar disponibilidad <a href="#"
+                          class="font-bold underline text-[#030303]">Seleccionar tienda</a></span>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+          <!-- Bottom Row: Stars & Actions -->
+          <div
+            class="flex flex-col md:flex-row justify-between items-stretch md:items-center border-t border-gray-100 pt-4 mt-5 gap-4">
+            <!-- Rating Stars (Desktop Only) -->
+            <div class="hidden md:flex items-center gap-1 select-none">
+              <div class="flex text-[#df0000]">
+                <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                  <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                </svg>
+                <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                  <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                </svg>
+                <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                  <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                </svg>
+                <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                  <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                </svg>
+                <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                  <path
+                    d="M22 9.24l-7.19-.62L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27 18.18 21l-1.63-7.03L22 9.24zM12 15.4V6.1l1.71 4.04 4.38.38-3.32 2.88 1 4.28L12 15.4z" />
+                </svg>
+              </div>
+              <span class="text-xs text-gray-500 font-semibold ml-1">7</span>
+              <!-- Info circle icon -->
+              <svg class="w-3.5 h-3.5 text-gray-400 cursor-pointer hover:text-gray-600 ml-0.5" fill="none"
+                stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
+            </div>
+
+            <!-- Add to Cart Button -->
+            <button
+              class="btn-add-to-cart bg-[#030303] text-white font-bold text-[13px] md:text-sm px-4 md:px-5 h-10 md:h-11 rounded-md hover:bg-[#2c2c2c] active:scale-95 transition-all flex items-center justify-center gap-2 w-full md:w-auto cursor-pointer"
+              data-product-id="xiaomi-17t" data-product-name="Xiaomi 17T" data-product-price="374.50"
+              data-product-image="public/xiaomi_17t.jpeg">
+              <svg class="w-4.5 h-4.5 md:w-5 md:h-5" fill="none" stroke="currentColor" stroke-width="2"
+                viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z">
+                </path>
+              </svg>
+              <span>Añadir al carrito</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Card 10: Xiaomi Redmi Note 14 Pro+ -->
+        <div
+          class="bg-white border border-gray-200 rounded-xl p-4 md:p-5 flex flex-col justify-between hover:shadow-[0_8px_24px_rgba(0,0,0,0.05)] transition-shadow duration-200">
+          <div>
+            <!-- Tags & Energy Badge -->
+            <div class="flex justify-between items-start gap-4 mb-3.5">
+              <div class="flex flex-wrap gap-2 items-center">
+                <!-- No tags -->
+              </div>
+              <!-- Energy Badge & Ficha técnica -->
+              <div class="flex items-center gap-2 shrink-0">
+                <a href="#" class="text-xs text-gray-500 underline hover:text-mm-red transition-colors hidden md:block font-medium">Ficha técnica</a>
+                <img src="public/b-a-g-icon.svg" alt="Clase B" class="h-6 w-auto shrink-0 hidden md:block filter hue-rotate-15 brightness-95" />
+              </div>
+            </div>
+
+            <!-- Desktop Title (Hidden on mobile) -->
+            <h3
+              class="hidden md:block text-[15px] font-bold text-[#030303] leading-snug hover:text-mm-red transition-colors cursor-pointer mb-4">
+              Móvil - Xiaomi Redmi Note 14 Pro+, Lavender Purple, 256 GB, 12 GB RAM, 6.67" AMOLED, Snapdragon® 7s Gen 3 Mobile Platform, 5110 mAh
+            </h3>
+
+            <!-- Card Grid -->
+            <div class="grid grid-cols-[110px_1fr] md:grid-cols-[140px_1fr_auto] gap-x-4 gap-y-3 items-start mt-2">
+
+              <!-- Col 1: Phone Image -->
+              <div class="flex flex-col items-center">
+                <div class="w-[110px] h-[110px] md:w-[140px] md:h-[140px] flex items-center justify-center">
+                  <img src="public/xiaomi_14pro+.jpeg" alt="Xiaomi Redmi Note 14 Pro+"
+                    class="max-h-full max-w-full object-contain" />
+                </div>
+              </div>
+
+              <!-- Col 2 (Desktop): Specs (Hidden on mobile) -->
+              <div class="hidden md:flex flex-col gap-3 text-[13px] text-[#030303] border-r border-gray-100 pr-4">
+                <div>
+                  <span class="block text-gray-500 text-[11px] font-normal leading-tight">Tamaño Pantalla
+                    (cm/pulg.)</span>
+                  <span class="block font-bold mt-0.5">16.94 cm / 6.67 "</span>
+                </div>
+                <div>
+                  <span class="block text-gray-500 text-[11px] font-normal leading-tight">Capacidad memoria</span>
+                  <span class="block font-bold mt-0.5">256 GB</span>
+                </div>
+                <div>
+                  <span class="block text-gray-500 text-[11px] font-normal leading-tight">Sistema Operativo</span>
+                  <span class="block font-bold mt-0.5">HyperOS</span>
+                </div>
+                <div>
+                  <span class="block text-gray-500 text-[11px] font-normal leading-tight">Procesador</span>
+                  <span class="block font-bold mt-0.5">Snapdragon® 7s Gen 3 Mobile Platform</span>
+                </div>
+              </div>
+
+              <!-- Col 3 / Mobile Right Column -->
+              <div class="flex flex-col items-start text-left w-full">
+
+                <!-- Mobile Title (Hidden on desktop) -->
+                <h3
+                  class="block md:hidden text-[13px] font-bold text-[#030303] leading-snug hover:text-mm-red transition-colors cursor-pointer mb-1.5">
+                  Móvil - Xiaomi Redmi Note 14 Pro+, Lavender Purple, 256 GB, 12 GB RAM, 6.67" AMOLED, Snapdragon® 7s Gen 3 Mobile Platform, 5110 mAh
+                </h3>
+
+                <!-- Rating Stars (Mobile Only) -->
+                <div class="flex md:hidden items-center gap-1 mb-2.5">
+                  <div class="flex text-[#df0000]">
+                    <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
+                      <path
+                        d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                    </svg>
+                    <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
+                      <path
+                        d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                    </svg>
+                    <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
+                      <path
+                        d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                    </svg>
+                    <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
+                      <path
+                        d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                    </svg>
+                    <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
+                      <path
+                        d="M22 9.24l-7.19-.62L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27 18.18 21l-1.63-7.03L22 9.24zM12 15.4V6.1l1.71 4.04 4.38.38-3.32 2.88 1 4.28L12 15.4z" />
+                    </svg>
+                  </div>
+                  <span class="text-xs text-gray-500 font-semibold ml-0.5">25</span>
+                </div>
+
+                <!-- Energy Rating Badge (Mobile Only) -->
+                <img src="public/b-a-g-icon.svg" alt="Clase B"
+                  class="h-4.5 w-auto shrink-0 block md:hidden mb-2 filter hue-rotate-15 brightness-95" />
+
+                <!-- Price Details -->
+                <div class="flex items-center gap-2 self-start">
+                  <span
+                    class="bg-mm-red text-white font-bold text-[10px] md:text-xs px-1 md:px-1.5 py-0.5 rounded-sm select-none">-50%</span>
+                  <span class="text-gray-400 text-xs md:text-sm line-through font-semibold">499,– €</span>
+                </div>
+
+                <div
+                  class="text-2xl md:text-[32px] font-extrabold text-[#df0000] mt-0.5 md:mt-1 leading-none self-start">
+                  249,50 €
+                </div>
+
+                <span
+                  class="text-[10px] md:text-[11px] text-gray-500 underline mt-1 cursor-pointer self-start hover:text-mm-red transition-colors">IVA
+                  incl. Con envío gratis</span>
+                <span
+                  class="text-[10px] md:text-[11px] text-gray-700 underline mt-1 font-medium cursor-pointer self-start hover:text-mm-red transition-colors">Simula
+                  tu financiación*</span>
+
+                <!-- Inventory / Delivery Block -->
+                <div class="flex flex-col gap-2 mt-4 text-left items-start">
+                  <div class="flex gap-2 items-start text-[13px]">
+                    <span class="w-2.5 h-2.5 bg-green-600 rounded-full mt-1 shrink-0"></span>
+                    <div class="text-left">
+                      <span class="font-bold text-[#030303]">Disponible online</span>
+                      <span class="block text-gray-500 text-[11px] mt-0.5">Compra antes de las 18:30 hrs., y recíbelo mañana</span>
+                    </div>
+                  </div>
+                  <div class="flex gap-2 items-start text-[13px]">
+                    <span class="w-2.5 h-2.5 bg-amber-500 rounded-full mt-1 shrink-0"></span>
+                    <div class="text-left">
+                      <span class="font-bold text-[#030303]">Recogida en tienda</span>
+                      <span class="block text-gray-500 text-[11px] mt-0.5">Consultar disponibilidad <a href="#"
+                          class="font-bold underline text-[#030303]">Seleccionar tienda</a></span>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+          <!-- Bottom Row: Stars & Actions -->
+          <div
+            class="flex flex-col md:flex-row justify-between items-stretch md:items-center border-t border-gray-100 pt-4 mt-5 gap-4">
+            <!-- Rating Stars (Desktop Only) -->
+            <div class="hidden md:flex items-center gap-1 select-none">
+              <div class="flex text-[#df0000]">
+                <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                  <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                </svg>
+                <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                  <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                </svg>
+                <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                  <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                </svg>
+                <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                  <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                </svg>
+                <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                  <path
+                    d="M22 9.24l-7.19-.62L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27 18.18 21l-1.63-7.03L22 9.24zM12 15.4V6.1l1.71 4.04 4.38.38-3.32 2.88 1 4.28L12 15.4z" />
+                </svg>
+              </div>
+              <span class="text-xs text-gray-500 font-semibold ml-1">25</span>
+              <!-- Info circle icon -->
+              <svg class="w-3.5 h-3.5 text-gray-400 cursor-pointer hover:text-gray-600 ml-0.5" fill="none"
+                stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
+            </div>
+
+            <!-- Add to Cart Button -->
+            <button
+              class="btn-add-to-cart bg-[#030303] text-white font-bold text-[13px] md:text-sm px-4 md:px-5 h-10 md:h-11 rounded-md hover:bg-[#2c2c2c] active:scale-95 transition-all flex items-center justify-center gap-2 w-full md:w-auto cursor-pointer"
+              data-product-id="xiaomi-redmi-note-14-pro-plus" data-product-name="Xiaomi Redmi Note 14 Pro+" data-product-price="249.50"
+              data-product-image="public/xiaomi_14pro+.jpeg">
+              <svg class="w-4.5 h-4.5 md:w-5 md:h-5" fill="none" stroke="currentColor" stroke-width="2"
+                viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z">
+                </path>
+              </svg>
+              <span>Añadir al carrito</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Card 11: Xiaomi Redmi Note 15 Pro 5G -->
+        <div
+          class="bg-white border border-gray-200 rounded-xl p-4 md:p-5 flex flex-col justify-between hover:shadow-[0_8px_24px_rgba(0,0,0,0.05)] transition-shadow duration-200">
+          <div>
+            <!-- Tags & Energy Badge -->
+            <div class="flex justify-between items-start gap-4 mb-3.5">
+              <div class="flex flex-wrap gap-2 items-center">
+                <span
+                  class="border border-mm-red text-mm-red font-bold text-[10px] md:text-[11px] px-2.5 py-0.5 rounded-full bg-white select-none">Destacado</span>
+              </div>
+              <!-- Energy Badge & Ficha técnica -->
+              <div class="flex items-center gap-2 shrink-0">
+                <a href="#" class="text-xs text-gray-500 underline hover:text-mm-red transition-colors hidden md:block font-medium">Ficha técnica</a>
+                <img src="public/b-a-g-icon.svg" alt="Clase B" class="h-6 w-auto shrink-0 hidden md:block filter hue-rotate-15 brightness-95" />
+              </div>
+            </div>
+
+            <!-- Desktop Title (Hidden on mobile) -->
+            <h3
+              class="hidden md:block text-[15px] font-bold text-[#030303] leading-snug hover:text-mm-red transition-colors cursor-pointer mb-4">
+              Móvil - Xiaomi Redmi Note 15 Pro 5G, Azul glaciar, 256 GB, 8 GB RAM, 6.83" CrystalRes AMOLED, MediaTek Dimensity 7400-Ultra, 6580 mAh
+            </h3>
+
+            <!-- Card Grid -->
+            <div class="grid grid-cols-[110px_1fr] md:grid-cols-[140px_1fr_auto] gap-x-4 gap-y-3 items-start mt-2">
+
+              <!-- Col 1: Phone Image -->
+              <div class="flex flex-col items-center">
+                <div class="w-[110px] h-[110px] md:w-[140px] md:h-[140px] flex items-center justify-center">
+                  <img src="public/xiaomi_15pro5g.jpeg" alt="Xiaomi Redmi Note 15 Pro 5G"
+                    class="max-h-full max-w-full object-contain" />
+                </div>
+              </div>
+
+              <!-- Col 2 (Desktop): Specs (Hidden on mobile) -->
+              <div class="hidden md:flex flex-col gap-3 text-[13px] text-[#030303] border-r border-gray-100 pr-4">
+                <div>
+                  <span class="block text-gray-500 text-[11px] font-normal leading-tight">Tamaño Pantalla
+                    (cm/pulg.)</span>
+                  <span class="block font-bold mt-0.5">17.45 cm / 6.83 "</span>
+                </div>
+                <div>
+                  <span class="block text-gray-500 text-[11px] font-normal leading-tight">Capacidad memoria</span>
+                  <span class="block font-bold mt-0.5">256 GB</span>
+                </div>
+                <div>
+                  <span class="block text-gray-500 text-[11px] font-normal leading-tight">Sistema Operativo</span>
+                  <span class="block font-bold mt-0.5">Sistema operativo propietario</span>
+                </div>
+                <div>
+                  <span class="block text-gray-500 text-[11px] font-normal leading-tight">Procesador</span>
+                  <span class="block font-bold mt-0.5">MediaTek Dimensity 7400-Ultra</span>
+                </div>
+              </div>
+
+              <!-- Col 3 / Mobile Right Column -->
+              <div class="flex flex-col items-start text-left w-full">
+
+                <!-- Mobile Title (Hidden on desktop) -->
+                <h3
+                  class="block md:hidden text-[13px] font-bold text-[#030303] leading-snug hover:text-mm-red transition-colors cursor-pointer mb-1.5">
+                  Móvil - Xiaomi Redmi Note 15 Pro 5G, Azul glaciar, 256 GB, 8 GB RAM, 6.83" CrystalRes AMOLED, MediaTek Dimensity 7400-Ultra, 6580 mAh
+                </h3>
+
+                <!-- Rating Stars (Mobile Only) -->
+                <div class="flex md:hidden items-center gap-1 mb-2.5">
+                  <div class="flex text-[#df0000]">
+                    <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
+                      <path
+                        d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                    </svg>
+                    <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
+                      <path
+                        d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                    </svg>
+                    <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
+                      <path
+                        d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                    </svg>
+                    <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
+                      <path
+                        d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                    </svg>
+                    <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
+                      <path
+                        d="M22 9.24l-7.19-.62L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27 18.18 21l-1.63-7.03L22 9.24zM12 15.4V6.1l1.71 4.04 4.38.38-3.32 2.88 1 4.28L12 15.4z" />
+                    </svg>
+                  </div>
+                  <span class="text-xs text-gray-500 font-semibold ml-0.5">60</span>
+                </div>
+
+                <!-- Energy Rating Badge (Mobile Only) -->
+                <img src="public/b-a-g-icon.svg" alt="Clase B"
+                  class="h-4.5 w-auto shrink-0 block md:hidden mb-2 filter hue-rotate-15 brightness-95" />
+
+                <!-- Price Details -->
+                <div class="flex items-center gap-2 self-start">
+                  <span
+                    class="bg-mm-red text-white font-bold text-[10px] md:text-xs px-1 md:px-1.5 py-0.5 rounded-sm select-none">-50%</span>
+                  <span class="text-gray-400 text-xs md:text-sm line-through font-semibold">399,– €</span>
+                </div>
+
+                <div
+                  class="text-2xl md:text-[32px] font-extrabold text-[#df0000] mt-0.5 md:mt-1 leading-none self-start">
+                  199,50 €
+                </div>
+
+                <span
+                  class="text-[10px] md:text-[11px] text-gray-500 underline mt-1 cursor-pointer self-start hover:text-mm-red transition-colors">IVA
+                  incl. Con envío gratis</span>
+                <span
+                  class="text-[10px] md:text-[11px] text-gray-700 underline mt-1 font-medium cursor-pointer self-start hover:text-mm-red transition-colors">Simula
+                  tu financiación*</span>
+
+                <!-- Inventory / Delivery Block -->
+                <div class="flex flex-col gap-2 mt-4 text-left items-start">
+                  <div class="flex gap-2 items-start text-[13px]">
+                    <span class="w-2.5 h-2.5 bg-green-600 rounded-full mt-1 shrink-0"></span>
+                    <div class="text-left">
+                      <span class="font-bold text-[#030303]">Disponible online</span>
+                      <span class="block text-gray-500 text-[11px] mt-0.5">Compra antes de las 18:30 hrs., y recíbelo mañana</span>
+                    </div>
+                  </div>
+                  <div class="flex gap-2 items-start text-[13px]">
+                    <span class="w-2.5 h-2.5 bg-amber-500 rounded-full mt-1 shrink-0"></span>
+                    <div class="text-left">
+                      <span class="font-bold text-[#030303]">Recogida en tienda</span>
+                      <span class="block text-gray-500 text-[11px] mt-0.5">Consultar disponibilidad <a href="#"
+                          class="font-bold underline text-[#030303]">Seleccionar tienda</a></span>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+          <!-- Bottom Row: Stars & Actions -->
+          <div
+            class="flex flex-col md:flex-row justify-between items-stretch md:items-center border-t border-gray-100 pt-4 mt-5 gap-4">
+            <!-- Rating Stars (Desktop Only) -->
+            <div class="hidden md:flex items-center gap-1 select-none">
+              <div class="flex text-[#df0000]">
+                <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                  <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                </svg>
+                <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                  <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                </svg>
+                <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                  <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                </svg>
+                <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                  <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                </svg>
+                <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                  <path
+                    d="M22 9.24l-7.19-.62L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27 18.18 21l-1.63-7.03L22 9.24zM12 15.4V6.1l1.71 4.04 4.38.38-3.32 2.88 1 4.28L12 15.4z" />
+                </svg>
+              </div>
+              <span class="text-xs text-gray-500 font-semibold ml-1">60</span>
+              <!-- Info circle icon -->
+              <svg class="w-3.5 h-3.5 text-gray-400 cursor-pointer hover:text-gray-600 ml-0.5" fill="none"
+                stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
+            </div>
+
+            <!-- Add to Cart Button -->
+            <button
+              class="btn-add-to-cart bg-[#030303] text-white font-bold text-[13px] md:text-sm px-4 md:px-5 h-10 md:h-11 rounded-md hover:bg-[#2c2c2c] active:scale-95 transition-all flex items-center justify-center gap-2 w-full md:w-auto cursor-pointer"
+              data-product-id="xiaomi-redmi-note-15-pro-5g" data-product-name="Xiaomi Redmi Note 15 Pro 5G" data-product-price="199.50"
+              data-product-image="public/xiaomi_15pro5g.jpeg">
+              <svg class="w-4.5 h-4.5 md:w-5 md:h-5" fill="none" stroke="currentColor" stroke-width="2"
+                viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z">
+                </path>
+              </svg>
+              <span>Añadir al carrito</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Card 12: Xiaomi Redmi Note 15 -->
+        <div
+          class="bg-white border border-gray-200 rounded-xl p-4 md:p-5 flex flex-col justify-between hover:shadow-[0_8px_24px_rgba(0,0,0,0.05)] transition-shadow duration-200">
+          <div>
+            <!-- Tags & Energy Badge -->
+            <div class="flex justify-between items-start gap-4 mb-3.5">
+              <div class="flex flex-wrap gap-2 items-center">
+                <span
+                  class="border border-mm-red text-mm-red font-bold text-[10px] md:text-[11px] px-2.5 py-0.5 rounded-full bg-white select-none">Top venta</span>
+              </div>
+              <!-- Energy Badge & Ficha técnica -->
+              <div class="flex items-center gap-2 shrink-0">
+                <a href="#" class="text-xs text-gray-500 underline hover:text-mm-red transition-colors hidden md:block font-medium">Ficha técnica</a>
+                <img src="public/b-a-g-icon.svg" alt="Clase B" class="h-6 w-auto shrink-0 hidden md:block filter hue-rotate-15 brightness-95" />
+              </div>
+            </div>
+
+            <!-- Desktop Title (Hidden on mobile) -->
+            <h3
+              class="hidden md:block text-[15px] font-bold text-[#030303] leading-snug hover:text-mm-red transition-colors cursor-pointer mb-4">
+              Móvil - Xiaomi Redmi Note 15, Azul glaciar, 256 GB, 8 GB RAM, 6.77" AMOLED FHD+, MediaTek Helio G100-Ultra, 6000 mAh
+            </h3>
+
+            <!-- Card Grid -->
+            <div class="grid grid-cols-[110px_1fr] md:grid-cols-[140px_1fr_auto] gap-x-4 gap-y-3 items-start mt-2">
+
+              <!-- Col 1: Phone Image -->
+              <div class="flex flex-col items-center">
+                <div class="w-[110px] h-[110px] md:w-[140px] md:h-[140px] flex items-center justify-center">
+                  <img src="public/xiaomi_15.jpeg" alt="Xiaomi Redmi Note 15"
+                    class="max-h-full max-w-full object-contain" />
+                </div>
+              </div>
+
+              <!-- Col 2 (Desktop): Specs (Hidden on mobile) -->
+              <div class="hidden md:flex flex-col gap-3 text-[13px] text-[#030303] border-r border-gray-100 pr-4">
+                <div>
+                  <span class="block text-gray-500 text-[11px] font-normal leading-tight">Tamaño Pantalla
+                    (cm/pulg.)</span>
+                  <span class="block font-bold mt-0.5">17.2 cm / 6.77 "</span>
+                </div>
+                <div>
+                  <span class="block text-gray-500 text-[11px] font-normal leading-tight">Capacidad memoria</span>
+                  <span class="block font-bold mt-0.5">256 GB</span>
+                </div>
+                <div>
+                  <span class="block text-gray-500 text-[11px] font-normal leading-tight">Sistema Operativo</span>
+                  <span class="block font-bold mt-0.5">Sistema operativo propietario</span>
+                </div>
+                <div>
+                  <span class="block text-gray-500 text-[11px] font-normal leading-tight">Procesador</span>
+                  <span class="block font-bold mt-0.5">MediaTek Helio G100-Ultra</span>
+                </div>
+              </div>
+
+              <!-- Col 3 / Mobile Right Column -->
+              <div class="flex flex-col items-start text-left w-full">
+
+                <!-- Mobile Title (Hidden on desktop) -->
+                <h3
+                  class="block md:hidden text-[13px] font-bold text-[#030303] leading-snug hover:text-mm-red transition-colors cursor-pointer mb-1.5">
+                  Móvil - Xiaomi Redmi Note 15, Azul glaciar, 256 GB, 8 GB RAM, 6.77" AMOLED FHD+, MediaTek Helio G100-Ultra, 6000 mAh
+                </h3>
+
+                <!-- Rating Stars (Mobile Only) -->
+                <div class="flex md:hidden items-center gap-1 mb-2.5">
+                  <div class="flex text-[#df0000]">
+                    <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
+                      <path
+                        d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                    </svg>
+                    <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
+                      <path
+                        d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                    </svg>
+                    <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
+                      <path
+                        d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                    </svg>
+                    <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
+                      <path
+                        d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                    </svg>
+                    <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
+                      <path
+                        d="M22 9.24l-7.19-.62L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27 18.18 21l-1.63-7.03L22 9.24zM12 15.4V6.1l1.71 4.04 4.38.38-3.32 2.88 1 4.28L12 15.4z" />
+                    </svg>
+                  </div>
+                  <span class="text-xs text-gray-500 font-semibold ml-0.5">78</span>
+                </div>
+
+                <!-- Energy Rating Badge (Mobile Only) -->
+                <img src="public/b-a-g-icon.svg" alt="Clase B"
+                  class="h-4.5 w-auto shrink-0 block md:hidden mb-2 filter hue-rotate-15 brightness-95" />
+
+                <!-- Price Details -->
+                <div class="flex items-center gap-2 self-start">
+                  <span
+                    class="bg-mm-red text-white font-bold text-[10px] md:text-xs px-1 md:px-1.5 py-0.5 rounded-sm select-none">-50%</span>
+                  <span class="text-gray-400 text-xs md:text-sm line-through font-semibold">249,– €</span>
+                </div>
+
+                <div
+                  class="text-2xl md:text-[32px] font-extrabold text-[#df0000] mt-0.5 md:mt-1 leading-none self-start">
+                  124,50 €
+                </div>
+
+                <span
+                  class="text-[10px] md:text-[11px] text-gray-500 underline mt-1 cursor-pointer self-start hover:text-mm-red transition-colors">IVA
+                  incl. Con envío gratis</span>
+                <span
+                  class="text-[10px] md:text-[11px] text-gray-700 underline mt-1 font-medium cursor-pointer self-start hover:text-mm-red transition-colors">Simula
+                  tu financiación*</span>
+
+                <!-- Reconditioned Box -->
+                <div
+                  class="inline-flex items-center bg-[#eef7f2] border border-[#d4ede0] rounded-sm text-[#147a46] px-2 md:px-2.5 py-1 text-[11px] md:text-[12px] font-bold mt-2.5 gap-1.5 self-start select-none">
+                  <svg class="w-3.5 h-3.5 text-[#147a46] shrink-0" fill="none" stroke="currentColor" stroke-width="2.5"
+                    viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                      d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99">
+                    </path>
+                  </svg>
+                  <span>Reacondicionado desde 199,– €</span>
+                </div>
+
+                <!-- Inventory / Delivery Block -->
+                <div class="flex flex-col gap-2 mt-4 text-left items-start">
+                  <div class="flex gap-2 items-start text-[13px]">
+                    <span class="w-2.5 h-2.5 bg-green-600 rounded-full mt-1 shrink-0"></span>
+                    <div class="text-left">
+                      <span class="font-bold text-[#030303]">Disponible online</span>
+                      <span class="block text-gray-500 text-[11px] mt-0.5">Compra antes de las 18:30 hrs., y recíbelo mañana</span>
+                    </div>
+                  </div>
+                  <div class="flex gap-2 items-start text-[13px]">
+                    <span class="w-2.5 h-2.5 bg-amber-500 rounded-full mt-1 shrink-0"></span>
+                    <div class="text-left">
+                      <span class="font-bold text-[#030303]">Recogida en tienda</span>
+                      <span class="block text-gray-500 text-[11px] mt-0.5">Consultar disponibilidad <a href="#"
+                          class="font-bold underline text-[#030303]">Seleccionar tienda</a></span>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+          <!-- Bottom Row: Stars & Actions -->
+          <div
+            class="flex flex-col md:flex-row justify-between items-stretch md:items-center border-t border-gray-100 pt-4 mt-5 gap-4">
+            <!-- Rating Stars (Desktop Only) -->
+            <div class="hidden md:flex items-center gap-1 select-none">
+              <div class="flex text-[#df0000]">
+                <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                  <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                </svg>
+                <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                  <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                </svg>
+                <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                  <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                </svg>
+                <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                  <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                </svg>
+                <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                  <path
+                    d="M22 9.24l-7.19-.62L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27 18.18 21l-1.63-7.03L22 9.24zM12 15.4V6.1l1.71 4.04 4.38.38-3.32 2.88 1 4.28L12 15.4z" />
+                </svg>
+              </div>
+              <span class="text-xs text-gray-500 font-semibold ml-1">78</span>
+              <!-- Info circle icon -->
+              <svg class="w-3.5 h-3.5 text-gray-400 cursor-pointer hover:text-gray-600 ml-0.5" fill="none"
+                stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
+            </div>
+
+            <!-- Add to Cart Button -->
+            <button
+              class="btn-add-to-cart bg-[#030303] text-white font-bold text-[13px] md:text-sm px-4 md:px-5 h-10 md:h-11 rounded-md hover:bg-[#2c2c2c] active:scale-95 transition-all flex items-center justify-center gap-2 w-full md:w-auto cursor-pointer"
+              data-product-id="xiaomi-redmi-note-15" data-product-name="Xiaomi Redmi Note 15" data-product-price="124.50"
+              data-product-image="public/xiaomi_15.jpeg">
               <svg class="w-4.5 h-4.5 md:w-5 md:h-5" fill="none" stroke="currentColor" stroke-width="2"
                 viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path stroke-linecap="round" stroke-linejoin="round"
