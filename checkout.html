@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pago Seguro - MediaMarkt Clone</title>
+
+  <!-- Google Fonts: Noto Sans Display -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Display:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS v4 Play CDN -->
+  <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+
+  <style type="text/tailwindcss">
+    @theme {
+      --color-mm-red: #df0000;
+      --font-noto: 'Noto Sans Display', sans-serif;
+    }
+
+    /* Custom Checkmark Draw Animation */
+    .success-checkmark-circle {
+      stroke-dasharray: 166;
+      stroke-dashoffset: 166;
+      stroke-width: 2;
+      stroke-miterlimit: 10;
+      stroke: #147a46;
+      fill: none;
+      animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+    }
+
+    .success-checkmark-check {
+      transform-origin: 50% 50%;
+      stroke-dasharray: 48;
+      stroke-dashoffset: 48;
+      animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.6s forwards;
+    }
+
+    @keyframes stroke {
+      100% {
+        stroke-dashoffset: 0;
+      }
+    }
+  </style>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="public/favicon-Media-48x48.png">
+</head>
+
+<body class="bg-[#f0f2f5] font-noto text-[#030303] min-h-screen flex flex-col">
+
+  <!-- Simplified Secure Checkout Header -->
+  <header class="bg-white border-b border-gray-200 sticky top-0 z-50">
+    <div class="max-w-[1240px] mx-auto px-4 h-16 flex items-center justify-between">
+      <!-- MediaMarkt Logo -->
+      <a href="index.html" class="flex items-center gap-1.5 hover:opacity-90 transition-opacity">
+        <!-- Desktop Logo -->
+        <img src="public/logo-desktop.svg" alt="MediaMarkt" class="h-6 w-auto hidden sm:block" />
+        <!-- Mobile Logo -->
+        <img src="public/logo-mobile.svg" alt="MediaMarkt" class="h-6 w-auto sm:hidden" />
+      </a>
+
+      <!-- Secure Checkout Lock Indicator -->
+      <div class="flex items-center gap-2 text-gray-500 font-semibold text-xs sm:text-sm select-none">
+        <svg class="w-4.5 h-4.5 text-[#147a46]" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z"></path>
+        </svg>
+        <span>Pago 100% Seguro</span>
+      </div>
+
+      <!-- Return Link -->
+      <a href="index.html" class="text-xs sm:text-sm font-bold text-gray-700 hover:text-mm-red transition-colors flex items-center gap-1">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5"></path>
+        </svg>
+        <span>Seguir comprando</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- Empty Cart State (Hidden by default, displayed via JS if no product is selected) -->
+  <main id="empty-cart-state" class="hidden flex-1 max-w-[1240px] mx-auto px-4 py-16 text-center flex flex-col items-center justify-center gap-6">
+    <div class="bg-white p-8 rounded-lg shadow-sm border border-gray-200 max-w-md w-full">
+      <div class="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+        <svg class="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z"></path>
+        </svg>
+      </div>
+      <h2 class="text-xl font-bold text-gray-800 mb-2">Tu carrito está vacío</h2>
+      <p class="text-gray-500 text-sm mb-6">No has seleccionado ningún producto para comprar. Vuelve al catálogo para elegir uno.</p>
+      <a href="index.html" class="inline-block bg-mm-red hover:bg-[#b80000] text-white font-extrabold text-sm py-3 px-6 rounded transition-colors w-full cursor-pointer">
+        Volver a la tienda
+      </a>
+    </div>
+  </main>
+
+  <!-- Checkout Content (Displayed via JS if product is selected) -->
+  <main id="checkout-content" class="flex-1 max-w-[1240px] mx-auto w-full px-4 py-8">
+    <h1 class="text-2xl font-extrabold text-gray-900 mb-8 flex items-center gap-2.5">
+      <span>Finalizar compra y realizar pago</span>
+    </h1>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+      <!-- Left Column: Checkout Details & Forms -->
+      <div class="lg:col-span-2 flex flex-col gap-6">
+
+        <!-- Section 1: Product Summary -->
+        <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-5 md:p-6">
+          <h3 class="text-base font-extrabold text-gray-900 border-b border-gray-100 pb-3 mb-4 uppercase tracking-wider flex items-center gap-2">
+            <span class="w-5.5 h-5.5 rounded-full bg-gray-100 flex items-center justify-center text-xs font-bold text-gray-600">1</span>
+            <span>Resumen del producto</span>
+          </h3>
+
+          <div class="flex flex-col sm:flex-row gap-5 items-center sm:items-start">
+            <!-- Product Image -->
+            <div class="w-32 h-32 bg-white flex items-center justify-center p-2 border border-gray-100 rounded-lg shrink-0">
+              <img id="summary-product-img" src="public/samsung_s26.jpeg" alt="Producto" class="max-h-full max-w-full object-contain" />
+            </div>
+            <!-- Product Specs -->
+            <div class="flex-1 text-center sm:text-left">
+              <h4 id="summary-product-title" class="font-bold text-gray-800 text-sm md:text-base leading-tight mb-2">
+                Móvil - Samsung Galaxy S26, Negro, 256 GB, 12 GB RAM
+              </h4>
+              
+              <!-- Specs Badges -->
+              <div class="flex flex-wrap justify-center sm:justify-start gap-2 mt-3 text-[11px] text-gray-500 font-medium">
+                <span class="bg-[#f0f2f5] px-2.5 py-1 rounded-sm">Envío seguro</span>
+                <span class="bg-[#f0f2f5] px-2.5 py-1 rounded-sm">Garantía oficial 3 años</span>
+                <span class="bg-[#eef7f2] text-[#147a46] px-2.5 py-1 rounded-sm font-semibold">Disponible online</span>
+              </div>
+            </div>
+            <!-- Product Price -->
+            <div class="sm:text-right shrink-0 mt-2 sm:mt-0">
+              <div class="flex items-center sm:justify-end gap-2 mb-1">
+                <span class="bg-mm-red text-white font-bold text-[10px] px-1 py-0.5 rounded-sm select-none">-50%</span>
+                <span id="summary-product-old-price" class="text-gray-400 text-xs line-through font-semibold">949,– €</span>
+              </div>
+              <div id="summary-product-price" class="text-xl md:text-2xl font-extrabold text-[#df0000] leading-none">
+                474,50 €
+              </div>
+              <span class="text-[10px] text-gray-500 block mt-1">IVA incl. y envío gratis</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section 2: Shipping details form -->
+        <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-5 md:p-6">
+          <h3 class="text-base font-extrabold text-gray-900 border-b border-gray-100 pb-3 mb-4 uppercase tracking-wider flex items-center gap-2">
+            <span class="w-5.5 h-5.5 rounded-full bg-gray-100 flex items-center justify-center text-xs font-bold text-gray-600">2</span>
+            <span>Dirección de envío</span>
+          </h3>
+
+          <form id="shipping-form" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1.5" for="ship-name">Nombre *</label>
+              <input type="text" id="ship-name" required placeholder="Ej. Juan" class="w-full bg-[#f8f9fa] border border-gray-300 rounded px-3.5 py-2 text-sm focus:bg-white focus:border-black focus:outline-none transition-colors" />
+            </div>
+            <div>
+              <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1.5" for="ship-lastname">Apellidos *</label>
+              <input type="text" id="ship-lastname" required placeholder="Ej. Pérez García" class="w-full bg-[#f8f9fa] border border-gray-300 rounded px-3.5 py-2 text-sm focus:bg-white focus:border-black focus:outline-none transition-colors" />
+            </div>
+            <div class="sm:col-span-2">
+              <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1.5" for="ship-address">Dirección de entrega *</label>
+              <input type="text" id="ship-address" required placeholder="Calle, número, piso, puerta" class="w-full bg-[#f8f9fa] border border-gray-300 rounded px-3.5 py-2 text-sm focus:bg-white focus:border-black focus:outline-none transition-colors" />
+            </div>
+            <div>
+              <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1.5" for="ship-postal">Código Postal *</label>
+              <input type="text" id="ship-postal" required placeholder="Ej. 28001" maxlength="5" class="w-full bg-[#f8f9fa] border border-gray-300 rounded px-3.5 py-2 text-sm focus:bg-white focus:border-black focus:outline-none transition-colors" />
+            </div>
+            <div>
+              <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1.5" for="ship-city">Ciudad *</label>
+              <input type="text" id="ship-city" required placeholder="Ej. Madrid" class="w-full bg-[#f8f9fa] border border-gray-300 rounded px-3.5 py-2 text-sm focus:bg-white focus:border-black focus:outline-none transition-colors" />
+            </div>
+            <div>
+              <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1.5" for="ship-email">Correo Electrónico *</label>
+              <input type="email" id="ship-email" required placeholder="juan.perez@ejemplo.com" class="w-full bg-[#f8f9fa] border border-gray-300 rounded px-3.5 py-2 text-sm focus:bg-white focus:border-black focus:outline-none transition-colors" />
+            </div>
+            <div>
+              <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1.5" for="ship-phone">Teléfono Móvil *</label>
+              <input type="tel" id="ship-phone" required placeholder="Ej. 600123456" class="w-full bg-[#f8f9fa] border border-gray-300 rounded px-3.5 py-2 text-sm focus:bg-white focus:border-black focus:outline-none transition-colors" />
+            </div>
+          </form>
+        </div>
+
+        <!-- Section 3: Credit Card Form -->
+        <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-5 md:p-6">
+          <h3 class="text-base font-extrabold text-gray-900 border-b border-gray-100 pb-3 mb-4 uppercase tracking-wider flex items-center justify-between">
+            <div class="flex items-center gap-2">
+              <span class="w-5.5 h-5.5 rounded-full bg-gray-100 flex items-center justify-center text-xs font-bold text-gray-600">3</span>
+              <span>Método de pago: Tarjeta de Crédito / Débito</span>
+            </div>
+            <!-- Cards logos -->
+            <div class="flex items-center gap-1">
+              <img src="public/visa.svg" alt="Visa" class="h-3 w-auto opacity-70" />
+              <img src="public/mastercard.svg" alt="Mastercard" class="h-4.5 w-auto opacity-70" />
+              <img src="public/logo-amex-bw.svg" alt="Amex" class="h-3 w-auto opacity-70" />
+            </div>
+          </h3>
+
+          <form id="payment-form" class="flex flex-col gap-4">
+            <!-- Cardholder Name -->
+            <div>
+              <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1.5" for="card-name">Titular de la tarjeta *</label>
+              <input type="text" id="card-name" required placeholder="Nombre que figura en la tarjeta" class="w-full bg-[#f8f9fa] border border-gray-300 rounded px-3.5 py-2.5 text-sm focus:bg-white focus:border-black focus:outline-none transition-colors uppercase" />
+            </div>
+
+            <!-- Card Number -->
+            <div class="relative">
+              <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1.5" for="card-number">Número de tarjeta *</label>
+              <div class="relative">
+                <input type="text" id="card-number" required placeholder="0000 0000 0000 0000" maxlength="19" class="w-full bg-[#f8f9fa] border border-gray-300 rounded pl-3.5 pr-11 py-2.5 text-sm focus:bg-white focus:border-black focus:outline-none transition-colors" />
+                
+                <!-- Dynamic Card Icon (changes based on card number type) -->
+                <div class="absolute right-3.5 top-1/2 -translate-y-1/2 flex items-center justify-center">
+                  <!-- Default card svg icon -->
+                  <svg id="card-brand-icon-default" class="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75-3h15a2.25 2.25 0 002.25-2.25V6.75A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25v10.5A2.25 2.25 0 004.5 19.5z"></path>
+                  </svg>
+                  <!-- Visa icon (hidden by default) -->
+                  <img id="card-brand-icon-visa" src="public/visa.svg" alt="Visa" class="h-4.5 w-auto hidden" />
+                  <!-- Mastercard icon (hidden by default) -->
+                  <img id="card-brand-icon-mastercard" src="public/mastercard.svg" alt="Mastercard" class="h-6 w-auto hidden" />
+                  <!-- Amex icon (hidden by default) -->
+                  <img id="card-brand-icon-amex" src="public/logo-amex-bw.svg" alt="Amex" class="h-5 w-auto hidden" />
+                </div>
+              </div>
+            </div>
+
+            <!-- Expiry & CVV Row -->
+            <div class="grid grid-cols-2 gap-4">
+              <div>
+                <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1.5" for="card-expiry">Fecha de caducidad *</label>
+                <input type="text" id="card-expiry" required placeholder="MM/AA" maxlength="5" class="w-full bg-[#f8f9fa] border border-gray-300 rounded px-3.5 py-2.5 text-sm focus:bg-white focus:border-black focus:outline-none transition-colors text-center" />
+              </div>
+              <div class="relative">
+                <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1.5 flex items-center justify-between" for="card-cvv">
+                  <span>CVV *</span>
+                  <span class="normal-case text-[10px] text-gray-400 font-normal underline cursor-help group relative">
+                    ¿Qué es esto?
+                    <!-- Tooltip overlay -->
+                    <span class="pointer-events-none absolute right-0 bottom-full mb-2 w-48 p-2 bg-gray-900 text-white rounded text-[10px] leading-tight font-normal opacity-0 group-hover:opacity-100 transition-opacity z-50 shadow-md">
+                      Código de 3 dígitos situado en la parte trasera de su tarjeta (o 4 dígitos en el frente para Amex).
+                    </span>
+                  </span>
+                </label>
+                <input type="password" id="card-cvv" required placeholder="000" maxlength="4" class="w-full bg-[#f8f9fa] border border-gray-300 rounded px-3.5 py-2.5 text-sm focus:bg-white focus:border-black focus:outline-none transition-colors text-center" />
+              </div>
+            </div>
+
+            <!-- Terms acceptance checkbox -->
+            <label class="flex items-start gap-2.5 mt-2 cursor-pointer select-none">
+              <input type="checkbox" required class="mt-1 accent-mm-red w-4 h-4 rounded border-gray-300" />
+              <span class="text-xs text-gray-500 leading-normal">
+                Acepto las <a href="#" class="underline hover:text-black">Condiciones Generales de Contratación</a>, las normas de privacidad de datos y confirmo que he leído la cláusula de financiación y garantía.
+              </span>
+            </label>
+
+            <!-- Pay Now Button -->
+            <button type="submit" class="mt-4 w-full bg-mm-red hover:bg-[#b80000] text-white font-extrabold text-base py-3.5 rounded shadow-[0_2px_8px_rgba(223,0,0,0.2)] hover:shadow-[0_4px_12px_rgba(223,0,0,0.3)] transition-all cursor-pointer flex items-center justify-center gap-2 select-none active:scale-[0.99]">
+              <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"></path>
+              </svg>
+              <span id="btn-pay-text">Confirmar y pagar</span>
+            </button>
+          </form>
+
+          <!-- Safe seals security banner -->
+          <div class="mt-6 border-t border-gray-100 pt-5 flex flex-wrap gap-x-6 gap-y-3 justify-center items-center opacity-70">
+            <span class="text-[11px] font-bold text-gray-400 uppercase tracking-wider select-none">Pasarela Segura:</span>
+            <div class="flex items-center gap-4">
+              <span class="text-xs font-semibold text-gray-500 flex items-center gap-1">
+                <svg class="w-4 h-4 text-[#147a46]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z"></path>
+                </svg>
+                SSL 256-Bit
+              </span>
+              <img src="public/51x18px_1.svg" alt="Financiación" class="h-4 w-auto filter grayscale" />
+              <img src="public/visa.svg" alt="Visa Secure" class="h-3 w-auto filter grayscale" />
+              <img src="public/mastercard.svg" alt="Mastercard ID Check" class="h-4 w-auto filter grayscale" />
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Right Column: Order Summary & Trust Guarantees -->
+      <div class="flex flex-col gap-6">
+
+        <!-- Summary box -->
+        <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-5 md:p-6 lg:sticky lg:top-24">
+          <h3 class="text-sm font-extrabold text-gray-900 border-b border-gray-100 pb-3 mb-4 uppercase tracking-wider">
+            Resumen del pedido
+          </h3>
+
+          <div class="flex flex-col gap-3.5 text-sm">
+            <!-- Row: Subtotal -->
+            <div class="flex justify-between items-center text-gray-600">
+              <span>Subtotal del producto</span>
+              <span id="summary-subtotal" class="font-bold text-gray-900">474,50 €</span>
+            </div>
+            <!-- Row: Shipping -->
+            <div class="flex justify-between items-center text-gray-600">
+              <span>Gastos de envío</span>
+              <span class="text-[#147a46] font-bold">Gratis</span>
+            </div>
+            <!-- Row: Taxes -->
+            <div class="flex justify-between items-center text-gray-500 text-xs">
+              <span>Taxes (IVA 21% incluido)</span>
+              <span id="summary-taxes">82,35 €</span>
+            </div>
+
+            <!-- Divider -->
+            <div class="border-t border-gray-100 my-1"></div>
+
+            <!-- Row: Total -->
+            <div class="flex justify-between items-baseline">
+              <span class="text-base font-extrabold text-gray-900">Total (IVA incl.)</span>
+              <span id="summary-total" class="text-2xl font-black text-mm-red leading-none">474,50 €</span>
+            </div>
+          </div>
+
+          <!-- MediaMarkt Guarantee list -->
+          <div class="mt-6 border-t border-gray-100 pt-5 flex flex-col gap-3.5">
+            <div class="flex items-start gap-2.5 text-xs text-gray-600 leading-snug">
+              <svg class="w-4 h-4 text-[#147a46] shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z"></path>
+              </svg>
+              <div>
+                <strong class="text-gray-900 block font-bold">Garantía oficial y soporte</strong>
+                Todos nuestros móviles cuentan con 3 años de garantía del fabricante y 30 días naturales de devolución.
+              </div>
+            </div>
+            
+            <div class="flex items-start gap-2.5 text-xs text-gray-600 leading-snug">
+              <svg class="w-4 h-4 text-gray-500 shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
+              <div>
+                <strong class="text-gray-900 block font-bold">Entrega rápida</strong>
+                Reciba su pedido cómodamente en su domicilio en un plazo estimado de 24 a 48 horas laborales.
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- Interactive Payment Success Overlay Modal (Hidden by default, shown via JS on checkout completion) -->
+  <div id="payment-success-modal" class="fixed inset-0 z-[3000] hidden items-center justify-center p-4">
+    <!-- Blur Backdrop -->
+    <div class="absolute inset-0 bg-[#000000]/60 backdrop-blur-md"></div>
+    
+    <!-- Modal Card -->
+    <div class="relative bg-white rounded-lg shadow-2xl border border-gray-100 max-w-md w-full p-6 text-center transform scale-95 opacity-0 transition-all duration-300 flex flex-col items-center">
+      <!-- Animated checkmark badge -->
+      <div class="w-20 h-20 bg-green-50 rounded-full flex items-center justify-center mb-5 select-none shadow-[inset_0_2px_4px_rgba(0,0,0,0.02)]">
+        <svg class="w-12 h-12" viewBox="0 0 52 52" xmlns="http://www.w3.org/2000/svg">
+          <circle class="success-checkmark-circle" cx="26" cy="26" r="25" fill="none"/>
+          <path class="success-checkmark-check" fill="none" stroke="#147a46" stroke-width="3" stroke-linecap="round" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+        </svg>
+      </div>
+
+      <h2 class="text-xl md:text-2xl font-black text-gray-900 mb-1.5">¡Pago Procesado con Éxito!</h2>
+      <p class="text-xs text-gray-400 font-bold uppercase tracking-wider mb-4">Referencia de pedido: <span id="success-order-ref" class="text-gray-700">MM-392810</span></p>
+
+      <div class="bg-[#f0f2f5] rounded p-4 mb-6 w-full text-left text-xs leading-relaxed text-gray-600 flex flex-col gap-2">
+        <p><strong>Titular:</strong> <span id="success-holder">JUAN PÉREZ</span></p>
+        <p><strong>Producto:</strong> <span id="success-title">Móvil - Samsung S26</span></p>
+        <p><strong>Importe Pagado:</strong> <span id="success-price" class="font-extrabold text-[#df0000]">474,50 €</span></p>
+        <p class="mt-2 text-[10px] text-gray-400 border-t border-gray-200 pt-2 text-center">Hemos enviado el recibo de compra y el enlace de seguimiento de envío a su dirección de correo electrónico.</p>
+      </div>
+
+      <button id="btn-success-close" class="bg-black hover:bg-gray-800 text-white font-extrabold text-sm py-3 px-6 rounded transition-all w-full cursor-pointer select-none active:scale-[0.99] shadow-md">
+        Volver a la tienda
+      </button>
+    </div>
+  </div>
+
+  <!-- Simplified Footer -->
+  <footer class="bg-[#333333] text-gray-400 text-[11px] py-6 px-4 mt-12 border-t border-gray-600">
+    <div class="max-w-[1240px] mx-auto text-center flex flex-col sm:flex-row justify-between items-center gap-4">
+      <p>© 2026 MediaMarkt Clone. Todos los derechos reservados. Pasarela segura CaixaBank.</p>
+      <div class="flex gap-4 underline">
+        <a href="#" class="hover:text-white transition-colors">Política de privacidad</a>
+        <a href="#" class="hover:text-white transition-colors">Condiciones de uso</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // 1. URL Query Parameters Parsing
+      const params = new URLSearchParams(window.location.search);
+      const productId = params.get('id');
+      const productName = params.get('name');
+      const productPrice = params.get('price');
+      const productImage = params.get('image');
+
+      const emptyCartState = document.getElementById('empty-cart-state');
+      const checkoutContent = document.getElementById('checkout-content');
+
+      // If no product is selected, display empty cart state and stop
+      if (!productId || !productPrice) {
+        emptyCartState.classList.remove('hidden');
+        checkoutContent.classList.add('hidden');
+        return;
+      }
+
+      // If product exists, show the checkout forms and populate data
+      emptyCartState.classList.add('hidden');
+      checkoutContent.classList.remove('hidden');
+
+      // Populate Product Summary
+      const summaryProductImg = document.getElementById('summary-product-img');
+      const summaryProductTitle = document.getElementById('summary-product-title');
+      const summaryProductPrice = document.getElementById('summary-product-price');
+      const summaryProductOldPrice = document.getElementById('summary-product-old-price');
+
+      // Summary Card elements
+      const summarySubtotal = document.getElementById('summary-subtotal');
+      const summaryTaxes = document.getElementById('summary-taxes');
+      const summaryTotal = document.getElementById('summary-total');
+      const btnPayText = document.getElementById('btn-pay-text');
+
+      // Set content values
+      if (productImage) summaryProductImg.src = productImage;
+      if (productName) summaryProductTitle.textContent = productName;
+
+      // Price Formatting
+      const parsedPrice = parseFloat(productPrice);
+      const formattedPrice = parsedPrice.toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' €';
+      
+      // Original price (100% markup prior to 50% off)
+      const oldPrice = parsedPrice * 2;
+      const formattedOldPrice = oldPrice.toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' ,– €';
+
+      summaryProductPrice.textContent = formattedPrice;
+      summaryProductOldPrice.textContent = formattedOldPrice;
+
+      // Order Summary Column
+      summarySubtotal.textContent = formattedPrice;
+      summaryTotal.textContent = formattedPrice;
+      btnPayText.textContent = `Confirmar y pagar ${formattedPrice}`;
+
+      // Calculate Taxes (IVA 21% included in total: price - price / 1.21)
+      const taxAmount = parsedPrice - (parsedPrice / 1.21);
+      const formattedTaxes = taxAmount.toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' €';
+      summaryTaxes.textContent = formattedTaxes;
+
+
+      // 2. Interactive Input Formatters & Card Detection
+      const cardInput = document.getElementById('card-number');
+      const cardNameInput = document.getElementById('card-name');
+      const expiryInput = document.getElementById('card-expiry');
+      const cvvInput = document.getElementById('card-cvv');
+
+      // Card brand icons
+      const brandDefault = document.getElementById('card-brand-icon-default');
+      const brandVisa = document.getElementById('card-brand-icon-visa');
+      const brandMastercard = document.getElementById('card-brand-icon-mastercard');
+      const brandAmex = document.getElementById('card-brand-icon-amex');
+
+      // Card Number Formatter and Type Detector
+      cardInput.addEventListener('input', (e) => {
+        let value = e.target.value.replace(/\D/g, ''); // Remove non-digits
+        
+        // Card type detection
+        if (value.startsWith('4')) {
+          brandVisa.classList.remove('hidden');
+          brandMastercard.classList.add('hidden');
+          brandAmex.classList.add('hidden');
+          brandDefault.classList.add('hidden');
+        } else if (value.startsWith('5')) {
+          brandVisa.classList.add('hidden');
+          brandMastercard.classList.remove('hidden');
+          brandAmex.classList.add('hidden');
+          brandDefault.classList.add('hidden');
+        } else if (value.startsWith('3')) {
+          brandVisa.classList.add('hidden');
+          brandMastercard.classList.add('hidden');
+          brandAmex.classList.remove('hidden');
+          brandDefault.classList.add('hidden');
+        } else {
+          brandVisa.classList.add('hidden');
+          brandMastercard.classList.add('hidden');
+          brandAmex.classList.add('hidden');
+          brandDefault.classList.remove('hidden');
+        }
+
+        // Add spaces every 4 digits
+        let formattedValue = '';
+        for (let i = 0; i < value.length; i++) {
+          if (i > 0 && i % 4 === 0) {
+            formattedValue += ' ';
+          }
+          formattedValue += value[i];
+        }
+        e.target.value = formattedValue;
+      });
+
+      // Expiry Date Formatter (adds "/" automatically)
+      expiryInput.addEventListener('input', (e) => {
+        let value = e.target.value.replace(/\D/g, ''); // Remove non-digits
+        if (value.length > 2) {
+          e.target.value = value.substring(0, 2) + '/' + value.substring(2, 4);
+        } else {
+          e.target.value = value;
+        }
+      });
+
+      // CVV Formatter (prevents non-digits)
+      cvvInput.addEventListener('input', (e) => {
+        e.target.value = e.target.value.replace(/\D/g, '');
+      });
+
+      // Postal Code input safety
+      const postalInput = document.getElementById('ship-postal');
+      postalInput.addEventListener('input', (e) => {
+        e.target.value = e.target.value.replace(/\D/g, '');
+      });
+
+      // Phone input safety
+      const phoneInput = document.getElementById('ship-phone');
+      phoneInput.addEventListener('input', (e) => {
+        e.target.value = e.target.value.replace(/\D/g, '');
+      });
+
+
+      // 3. Payment Processing & Success Modal
+      const paymentForm = document.getElementById('payment-form');
+      const shippingForm = document.getElementById('shipping-form');
+      const successModal = document.getElementById('payment-success-modal');
+      const successCard = successModal.querySelector('.relative.bg-white');
+
+      paymentForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        // Validate shipping form first
+        if (!shippingForm.checkValidity()) {
+          shippingForm.reportValidity();
+          return;
+        }
+
+        // Simulate payment authorization delay
+        const btnPay = paymentForm.querySelector('button[type="submit"]');
+        const originalBtnHTML = btnPay.innerHTML;
+        btnPay.disabled = true;
+        btnPay.innerHTML = `
+          <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+          </svg>
+          Procesando pago seguro...
+        `;
+
+        setTimeout(() => {
+          // Reset pay button
+          btnPay.disabled = false;
+          btnPay.innerHTML = originalBtnHTML;
+
+          // Generate random order reference
+          const orderRef = 'MM-' + Math.floor(100000 + Math.random() * 900000);
+          document.getElementById('success-order-ref').textContent = orderRef;
+
+          // Populate success details
+          document.getElementById('success-holder').textContent = cardNameInput.value.toUpperCase();
+          document.getElementById('success-title').textContent = productName;
+          document.getElementById('success-price').textContent = formattedPrice;
+
+          // Display success modal
+          successModal.classList.remove('hidden');
+          successModal.classList.add('flex');
+          
+          // Animate success modal card
+          setTimeout(() => {
+            successCard.classList.remove('scale-95', 'opacity-0');
+            successCard.classList.add('scale-100', 'opacity-100');
+          }, 50);
+
+        }, 1500); // 1.5 seconds mock delay
+      });
+
+      // Close success modal button
+      document.getElementById('btn-success-close').addEventListener('click', () => {
+        // Smooth scale-out transition
+        successCard.classList.add('scale-95', 'opacity-0');
+        successCard.classList.remove('scale-100', 'opacity-100');
+        
+        setTimeout(() => {
+          successModal.classList.remove('flex');
+          successModal.classList.add('hidden');
+          // Redirect back to catalog
+          window.location.href = 'index.html';
+        }, 300);
+      });
+    });
+  </script>
+</body>
+
+</html>

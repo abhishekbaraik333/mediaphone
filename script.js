@@ -186,24 +186,23 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // --- Add to Cart Interaction ---
-  const cartBadge = document.getElementById('cart-badge');
   const addToCartButtons = document.querySelectorAll('.btn-add-to-cart');
-  let cartCount = 0;
 
-  if (addToCartButtons.length > 0 && cartBadge) {
+  if (addToCartButtons.length > 0) {
     addToCartButtons.forEach(button => {
       button.addEventListener('click', () => {
+        const productId = button.getAttribute('data-product-id');
         const productName = button.getAttribute('data-product-name');
-        
-        cartCount++;
-        cartBadge.textContent = cartCount;
-        cartBadge.classList.remove('hidden');
-        
-        // Micro-animation on the badge
-        cartBadge.style.transform = 'scale(1.2)';
-        setTimeout(() => {
-          cartBadge.style.transform = 'scale(1)';
-        }, 150);
+        const productPrice = button.getAttribute('data-product-price');
+        const productImage = button.getAttribute('data-product-image');
+
+        const checkoutUrl = new URL('checkout.html', window.location.href);
+        checkoutUrl.searchParams.set('id', productId || '');
+        checkoutUrl.searchParams.set('name', productName || '');
+        checkoutUrl.searchParams.set('price', productPrice || '');
+        checkoutUrl.searchParams.set('image', productImage || '');
+
+        window.location.href = checkoutUrl.toString();
       });
     });
   }
